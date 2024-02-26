@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClientsForm extends javax.swing.JFrame {
     
-    private IService service;
+    private final IService<Cliente> service;
 
     public ClientsForm() {
         initComponents();
@@ -25,8 +25,8 @@ public class ClientsForm extends javax.swing.JFrame {
         this.service = new ClienteService();
         btnGroupFilter.clearSelection();
         txtId.setVisible(false);
-        loadData();
         tablaClientes.setAutoCreateRowSorter(true);
+        loadData();
     }
     
     private void loadData() {
