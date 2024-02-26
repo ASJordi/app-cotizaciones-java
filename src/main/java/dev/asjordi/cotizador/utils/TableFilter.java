@@ -34,7 +34,7 @@ public class TableFilter {
     public static void applyFilter(JTable table, JTextField txt, int index) {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(sorter);
-        sorter.setRowFilter(RowFilter.regexFilter(txt.getText().trim(), index));
+        sorter.setRowFilter(RowFilter.regexFilter(txt.getText().toLowerCase().trim(), index));
     }
     
 }
