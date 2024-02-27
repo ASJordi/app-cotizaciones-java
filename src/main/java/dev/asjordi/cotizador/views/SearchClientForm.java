@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchClientForm extends javax.swing.JFrame {
     
-    private IService service;
+    private final IService<Cliente> service;
 
     public SearchClientForm() {
         initComponents();
