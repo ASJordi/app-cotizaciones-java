@@ -16,14 +16,16 @@ import javax.swing.table.DefaultTableModel;
 public class SearchClientForm extends javax.swing.JFrame {
     
     private final IService<Cliente> service;
+    private AddQuoteForm aq;
 
-    public SearchClientForm() {
+    public SearchClientForm(AddQuoteForm aq) {
         initComponents();
         this.setIconImage(FormIcon.getIcon().getImage());
         this.service = new ClienteService();
         tablaClientes.setAutoCreateRowSorter(true);
         tablaClientes.setDefaultEditor(Object.class, null);
         loadData();
+        this.aq = aq;
     }
     
     private void loadData() {
@@ -228,7 +230,7 @@ public class SearchClientForm extends javax.swing.JFrame {
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         if (evt.getClickCount() == 2 && tablaClientes.getSelectedRow() != -1) {
             int id = Integer.parseInt(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)));
-            AddQuoteForm.setClientId(id);
+            aq.setClientId(id);
             this.dispose();
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
