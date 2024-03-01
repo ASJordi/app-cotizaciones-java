@@ -1,6 +1,6 @@
 package dev.asjordi.cotizador.views;
 
-import dev.asjordi.cotizador.utils.FormIcon;
+import dev.asjordi.cotizador.utils.ImageUtils;
 
 /**
  *
@@ -11,7 +11,7 @@ public class AboutDialog extends javax.swing.JDialog {
     public AboutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setIconImage(FormIcon.getIcon().getImage());
+        this.setIconImage(ImageUtils.getIcon().getImage());
     }
 
     @SuppressWarnings("unchecked")

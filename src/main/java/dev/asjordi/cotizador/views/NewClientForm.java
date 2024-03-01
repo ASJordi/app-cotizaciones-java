@@ -3,7 +3,7 @@ package dev.asjordi.cotizador.views;
 import dev.asjordi.cotizador.models.Cliente;
 import dev.asjordi.cotizador.services.ClienteService;
 import dev.asjordi.cotizador.services.IService;
-import dev.asjordi.cotizador.utils.FormIcon;
+import dev.asjordi.cotizador.utils.ImageUtils;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,7 @@ public class NewClientForm extends javax.swing.JFrame {
 
     public NewClientForm() {
         initComponents();
-        this.setIconImage(FormIcon.getIcon().getImage());
+        this.setIconImage(ImageUtils.getIcon().getImage());
         this.service = new ClienteService();
     }
     

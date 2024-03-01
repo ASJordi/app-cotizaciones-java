@@ -3,7 +3,7 @@ package dev.asjordi.cotizador.views;
 import dev.asjordi.cotizador.models.Servicio;
 import dev.asjordi.cotizador.services.IService;
 import dev.asjordi.cotizador.services.ServicioService;
-import dev.asjordi.cotizador.utils.FormIcon;
+import dev.asjordi.cotizador.utils.ImageUtils;
 import dev.asjordi.cotizador.utils.FormatNumber;
 import dev.asjordi.cotizador.utils.TableFilter;
 import java.awt.event.ItemEvent;
@@ -22,7 +22,7 @@ public class ServicesForm extends javax.swing.JFrame {
 
     public ServicesForm() {
         initComponents();
-        this.setIconImage(FormIcon.getIcon().getImage());
+        this.setIconImage(ImageUtils.getIcon().getImage());
         this.service = new ServicioService();
         btnGroupFilter.clearSelection();
         txtId.setVisible(false);

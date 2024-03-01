@@ -3,7 +3,7 @@ package dev.asjordi.cotizador.views;
 import dev.asjordi.cotizador.models.Cliente;
 import dev.asjordi.cotizador.services.ClienteService;
 import dev.asjordi.cotizador.services.IService;
-import dev.asjordi.cotizador.utils.FormIcon;
+import dev.asjordi.cotizador.utils.ImageUtils;
 import dev.asjordi.cotizador.utils.TableFilter;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class ClientsForm extends javax.swing.JFrame {
 
     public ClientsForm() {
         initComponents();
-        this.setIconImage(FormIcon.getIcon().getImage());
+        this.setIconImage(ImageUtils.getIcon().getImage());
         this.service = new ClienteService();
         btnGroupFilter.clearSelection();
         txtId.setVisible(false);

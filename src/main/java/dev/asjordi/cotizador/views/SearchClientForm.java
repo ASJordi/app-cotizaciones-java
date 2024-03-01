@@ -3,7 +3,7 @@ package dev.asjordi.cotizador.views;
 import dev.asjordi.cotizador.models.Cliente;
 import dev.asjordi.cotizador.services.ClienteService;
 import dev.asjordi.cotizador.services.IService;
-import dev.asjordi.cotizador.utils.FormIcon;
+import dev.asjordi.cotizador.utils.ImageUtils;
 import dev.asjordi.cotizador.utils.TableFilter;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,7 +20,7 @@ public class SearchClientForm extends javax.swing.JFrame {
 
     public SearchClientForm(AddQuoteForm aq) {
         initComponents();
-        this.setIconImage(FormIcon.getIcon().getImage());
+        this.setIconImage(ImageUtils.getIcon().getImage());
         this.service = new ClienteService();
         tablaClientes.setAutoCreateRowSorter(true);
         tablaClientes.setDefaultEditor(Object.class, null);
