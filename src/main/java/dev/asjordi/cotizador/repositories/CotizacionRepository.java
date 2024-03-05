@@ -52,8 +52,9 @@ public class CotizacionRepository implements IRepository<Cotizacion> {
     @Override
     public Cotizacion getById(Integer id) throws SQLException {
         Cotizacion cotizacion = null;
+        String sql = "SELECT c.id, c.fecha, c.subtotal, c.iva, c.total, c.id_cliente, cl.nombre, cl.telefono, cl.correo, cl.direccion, cl.estatus FROM cotizaciones AS c INNER JOIN clientes AS cl ON c.id_cliente = cl.id WHERE id = ?;";
 
-        try (var ps = conn.prepareStatement("SELECT * FROM cotizaciones WHERE id = ?")) {
+        try (var ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (var rs = ps.executeQuery()) {
                 if (rs.next()) {
