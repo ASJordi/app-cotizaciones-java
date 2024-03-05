@@ -24,6 +24,10 @@ public class Servicio {
         this.id = id;
     }
 
+    public Servicio(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
