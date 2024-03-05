@@ -1,0 +1,5 @@
+{
+  "conventionalCommits.scopes": [
+    "Client", "Service", "DEmpresa", "Quote"
+  ]
+}
