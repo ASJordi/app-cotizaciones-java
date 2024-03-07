@@ -4,6 +4,9 @@ import dev.asjordi.cotizador.models.DatosEmpresa;
 import dev.asjordi.cotizador.services.DatosEmpresaService;
 import dev.asjordi.cotizador.services.IServiceWithImage;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -38,6 +41,17 @@ public class ImageUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static InputStream convertImageIconToInputStream(ImageIcon icon) throws IOException {
+        Image image = icon.getImage();
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        bufferedImage.getGraphics().drawImage(image, 0, 0, null);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
+        InputStream inputStream = new ByteArrayInputStream(imageBytes);
+        return inputStream;
     }
     
 }
