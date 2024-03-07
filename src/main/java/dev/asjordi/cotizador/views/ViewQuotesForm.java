@@ -1,9 +1,13 @@
 package dev.asjordi.cotizador.views;
 
 import dev.asjordi.cotizador.models.Cotizacion;
+import dev.asjordi.cotizador.models.DatosEmpresa;
 import dev.asjordi.cotizador.services.CotizacionService;
+import dev.asjordi.cotizador.services.DatosEmpresaService;
 import dev.asjordi.cotizador.services.IService;
+import dev.asjordi.cotizador.services.IServiceWithImage;
 import dev.asjordi.cotizador.utils.ImageUtils;
+import dev.asjordi.cotizador.utils.PrintQuotesReport;
 import dev.asjordi.cotizador.utils.TableFilter;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,24 +19,26 @@ import javax.swing.table.DefaultTableModel;
  * @author Jordi <ejordi.ayala@gmail.com>
  */
 public class ViewQuotesForm extends javax.swing.JFrame {
-    
-    private final IService<Cotizacion> service;
+
+    private final IService<Cotizacion> cotizacionService;
+    private final IServiceWithImage<DatosEmpresa> empresaService;
 
     public ViewQuotesForm() {
         initComponents();
         this.setIconImage(ImageUtils.getIcon().getImage());
-        this.service = new CotizacionService();
+        this.cotizacionService = new CotizacionService();
+        this.empresaService = new DatosEmpresaService();
         tablaCotizaciones.setAutoCreateRowSorter(true);
         loadData();
     }
-    
+
     private void loadData() {
         DefaultTableModel tModel = new DefaultTableModel();
         String[] columns = {"Id", "Cliente", "Teléfono", "Correo", "Fecha", "SubTotal", "Iva", "Total"};
         tModel.setColumnIdentifiers(columns);
-        
+
         try {
-            List<Cotizacion> list = service.getAll();
+            List<Cotizacion> list = cotizacionService.getAll();
             if (!list.isEmpty()) {
                 for (Cotizacion c : list) {
                     Object[] data = {c.getId(), c.getCliente().getNombre(), c.getCliente().getTelefono(), c.getCliente().getCorreo(), c.getFecha(), c.getSubtotal(), c.getIva(), c.getTotal()};
@@ -42,10 +48,10 @@ public class ViewQuotesForm extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         tablaCotizaciones.setModel(tModel);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,13 +122,10 @@ public class ViewQuotesForm extends javax.swing.JFrame {
         btnImprimir.setBackground(new java.awt.Color(255, 255, 255));
         btnImprimir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnImprimir.setForeground(new java.awt.Color(0, 0, 0));
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/print.png"))); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/print.png"))); // NOI18N
         btnImprimir.setToolTipText("Imprimir cotización");
         btnImprimir.setBorder(null);
         btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImprimir.setMaximumSize(new java.awt.Dimension(32, 32));
-        btnImprimir.setMinimumSize(new java.awt.Dimension(32, 32));
-        btnImprimir.setPreferredSize(new java.awt.Dimension(32, 32));
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);
@@ -132,13 +135,10 @@ public class ViewQuotesForm extends javax.swing.JFrame {
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminar.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         btnEliminar.setToolTipText("Eliminar cotización");
         btnEliminar.setBorder(null);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar.setMaximumSize(new java.awt.Dimension(32, 32));
-        btnEliminar.setMinimumSize(new java.awt.Dimension(32, 32));
-        btnEliminar.setPreferredSize(new java.awt.Dimension(32, 32));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -155,9 +155,9 @@ public class ViewQuotesForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFiltroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnImprimir)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar)
                 .addGap(27, 27, 27))
         );
         pFiltersLayout.setVerticalGroup(
@@ -165,13 +165,13 @@ public class ViewQuotesForm extends javax.swing.JFrame {
             .addGroup(pFiltersLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(pFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar)
                     .addGroup(pFiltersLayout.createSequentialGroup()
                         .addGroup(pFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtFiltroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10))
-                    .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -256,34 +256,49 @@ public class ViewQuotesForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // TODO
+        if (tablaCotizaciones.getRowCount() > 0) {
+
+            if (tablaCotizaciones.getSelectedRow() != -1) {
+
+                int id = Integer.parseInt(String.valueOf(tablaCotizaciones.getValueAt(tablaCotizaciones.getSelectedRow(), 0)));
+
+                try {
+                    PrintQuotesReport pq = new PrintQuotesReport(id);
+                    pq.print();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else JOptionPane.showMessageDialog(rootPane, "Favor de seleccionar un registro", "App Cotizaciones", JOptionPane.ERROR_MESSAGE);
+
+        } else JOptionPane.showMessageDialog(rootPane, "No hay registros!", "App Cotizaciones", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
         if (tablaCotizaciones.getRowCount() > 0) {
-            
+
             if (tablaCotizaciones.getSelectedRow() != -1) {
-                
+
                 int id = Integer.parseInt(String.valueOf(tablaCotizaciones.getValueAt(tablaCotizaciones.getSelectedRow(), 0)));
-                
+
                 if (JOptionPane.showConfirmDialog(rootPane, "¿Esta seguro de eliminar el registro?", "App Cotizaciones", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    
+
                     try {
-                        service.delete(id);
+                        cotizacionService.delete(id);
                         JOptionPane.showMessageDialog(rootPane, "Cotización eliminada", "App Cotizaciones", JOptionPane.INFORMATION_MESSAGE);
-                        
+
                         loadData();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    
+
                 }
-                
+
             } else JOptionPane.showMessageDialog(rootPane, "Favor de seleccionar un registro", "App Cotizaciones", JOptionPane.ERROR_MESSAGE);
-            
+
         } else JOptionPane.showMessageDialog(rootPane, "No hay registros!", "App Cotizaciones", JOptionPane.ERROR_MESSAGE);
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtFiltroBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroBuscarKeyReleased
