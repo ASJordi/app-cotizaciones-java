@@ -20,7 +20,7 @@ public class ImageUtils {
     
     public static ImageIcon getIcon() {
         try {
-            InputStream inputStream = ImageUtils.class.getResourceAsStream("/whiteIcon.png");
+            InputStream inputStream = ImageUtils.class.getResourceAsStream("/img/whiteIcon.png");
             if (inputStream != null) return new ImageIcon(ImageIO.read(inputStream));
             else return null;
         } catch (IOException e) {

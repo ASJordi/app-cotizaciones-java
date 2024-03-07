@@ -276,7 +276,7 @@ public class AddQuoteForm extends javax.swing.JFrame {
         btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBuscarCliente.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
         btnBuscarCliente.setToolTipText("Buscar cliente");
         btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -313,7 +313,7 @@ public class AddQuoteForm extends javax.swing.JFrame {
         btnNuevoCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnNuevoCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnNuevoCliente.setForeground(new java.awt.Color(0, 0, 0));
-        btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
+        btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnNuevoCliente.setToolTipText("Agregar Cliente");
         btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -585,12 +585,13 @@ public class AddQuoteForm extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtSloganEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(pDataBusinessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDirEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pDataBusinessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pDataBusinessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
-                        .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pDataBusinessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtDirEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -600,7 +601,7 @@ public class AddQuoteForm extends javax.swing.JFrame {
         btnAgregarServicio.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregarServicio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAgregarServicio.setForeground(new java.awt.Color(0, 0, 0));
-        btnAgregarServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar.png"))); // NOI18N
+        btnAgregarServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnAgregarServicio.setToolTipText("Agregar Servicio");
         btnAgregarServicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarServicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -613,7 +614,7 @@ public class AddQuoteForm extends javax.swing.JFrame {
         btnRemoverServicio.setBackground(new java.awt.Color(255, 255, 255));
         btnRemoverServicio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnRemoverServicio.setForeground(new java.awt.Color(0, 0, 0));
-        btnRemoverServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminar.png"))); // NOI18N
+        btnRemoverServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         btnRemoverServicio.setToolTipText("Borrar Servicio");
         btnRemoverServicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemoverServicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
