@@ -10,6 +10,7 @@ import dev.asjordi.cotizador.services.DatosEmpresaService;
 import dev.asjordi.cotizador.services.IService;
 import dev.asjordi.cotizador.services.IServiceWithImage;
 import dev.asjordi.cotizador.utils.ImageUtils;
+import dev.asjordi.cotizador.utils.PrintQuotesReport;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.math.BigDecimal;
@@ -864,10 +865,11 @@ public class AddQuoteForm extends javax.swing.JFrame {
                 
                 try {
                     this.cotizacionService.add(cotizacion);
-                    
                     JOptionPane.showMessageDialog(rootPane, "Cotización agregada con exito!", "App Cotizaciones", JOptionPane.INFORMATION_MESSAGE);
+                    PrintQuotesReport pq = new PrintQuotesReport(cotizacion.getId());
+                    pq.printWithoutDialog();
                     clear();
-                } catch (SQLException e) {
+                } catch (Exception e) {
                    e.printStackTrace();
                 }
                 
