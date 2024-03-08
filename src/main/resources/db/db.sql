@@ -52,12 +52,8 @@ CREATE TABLE cotizacion_detalle (
     FOREIGN KEY (id_servicio) REFERENCES servicios(id)
 );
 
-SELECT * FROM cotizacion_detalle;
-
 -- default data
 
 INSERT INTO 
 datos_empresa (id, nombre, descripcion, direccion, contacto, slogan, banco, titular, no_cuenta, clabe, observaciones, iva) 
 VALUES (null, 'default', 'default', 'default', 'default', 'default', 'default', 'default', 'default', 'default', 'default', 16); 
-
--- view ver cotizaciones ya realizadas
